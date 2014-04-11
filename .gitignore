@@ -2,7 +2,6 @@
 .DS_STORE
 
 # for LaTeX
-*.pdf
 *.acn
 *.acr
 *.alg
