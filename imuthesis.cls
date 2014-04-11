@@ -17,6 +17,14 @@
 % 页边距和页面尺寸
 \geometry{top=30mm,bottom=25mm,left=30mm,right=20mm}
 
+% 1.5倍行距
+\linespread{1.5}
+
+%重定义一些标题格式（ctex）
+
+%% 一级标题（Chapter）
+\CTEXsetup[titleformat={\zihao{3}\heiti}]{chapter} %章节标题3号黑体
+
 
 % 页眉页脚
 \fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}}
@@ -65,21 +73,6 @@
 \setDate{}
 \setKeywordsEng{}
 
-%重定义一些标题格式（ctex def）
-
-%% 一级标题（Chapter）
-\CTEXsetup[titleformat={\zihao{3}\heiti}]{chapter} %章节标题3号黑体
-
-
-%\def\CTEX@chapter@format{\centering}
-%\def\CTEX@chapter@nameformat{\huge\bfseries}
-%\def\CTEX@chapter@aftername{\quad}
-%\def\CTEX@chapter@titleformat{\huge\bfseries}
-%\def\CTEX@chapter@beforeskip{50\p@}
-%\def\CTEX@chapter@afterskip{40\p@}
-%\def\CTEX@chapter@indent{\z@}
-
-
 
 \renewcommand\maketitle{
     \cleardoublepage
@@ -108,7 +101,7 @@
 
                 \zihao{-3}\heiti{}指~导~老~师~~\underline{\makebox[50mm]{\@Tutor}}
 
-                \vspace{4cm}
+                \vspace{2.5cm}
                 \zihao{-3}\heiti{}{\@Year}年{\@Month}月{\@Date}日
 
             }
@@ -147,6 +140,11 @@
     \vspace{1cm}
     \zihao{4}\heiti{}\textbf{Keywords}~~\zihao{-4}\songti{}\@KeywordsEng
 }
+
+% 一些实用的小工具~
+% 上标引用
+\newcommand{\supercite}[1]{\textsuperscript{\cite{#1}}}
+
 
 
 
