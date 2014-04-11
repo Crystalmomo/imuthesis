@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{imuthesis}[2014/4/10 v0.1beta Inner Mongolia University Thesis document class]
+\ProvidesClass{imuthesis}[2014/4/10 v0.1beta Inner Mongolia University Thesis documenfancyt class]
 
 % 传递参数到ctexbook
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
@@ -23,16 +23,31 @@
 %重定义一些标题格式（ctex）
 
 %% 一级标题（Chapter）
-\CTEXsetup[titleformat={\zihao{3}\heiti}]{chapter} %章节标题3号黑体
+\CTEXsetup[titleformat={\zihao{3}\heiti}]{chapter}  %章标题3号黑体
+\CTEXsetup[nameformat={\zihao{3}\heiti}]{chapter}   %章名3号黑体
+
+%% 二级标题（Section）
+\CTEXsetup[format={}]{section}      %取消缺省样式
+\CTEXsetup[titleformat={\zihao{-4}\heiti}]{section}  
+\CTEXsetup[nameformat={\zihao{-4}\heiti}]{section}
+
+%% 三级标题（Subsection）
+\CTEXsetup[format={}]{subsection}    %取消缺省样式
+\CTEXsetup[titleformat={\zihao{-4}\heiti}]{subsection}
+\CTEXsetup[nameformat={\zihao{-4}\heiti}]{subsection}
 
 
 % 页眉页脚
-\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\includegraphics[height=0.04\textheight]{img/emblem}\hspace{1em}}
-\fancyhead[C]{\songti\zihao{-3}内蒙古大学本科毕业论文(设计)}
-\fancyhead[R]{\songti\zihao{5}第 \thepage 页}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{1pt}
+    \fancyhead[L]{\includegraphics[height=0.04\textheight]{img/emblem}\hspace{1em}}
+    \fancyhead[C]{\songti\zihao{-3}内蒙古大学本科毕业论文(设计)}
+    \fancyhead[R]{\songti\zihao{5}第 \thepage 页}
+}
+\pagestyle{plain}
+
+
 
 % 文档信息
 \newcommand\setUniversityId[1]{\def\@UniversityId{#1}} %学校代码
@@ -82,14 +97,13 @@
 
         \zihao{5}\heiti{}分~类~号~\underline{\makebox[20mm]{\@CLC}}\hspace{8cm}
         \zihao{5}\heiti{}密级\underline{\makebox[20mm]{\@Security}}
-        \vspace{5cm}
+        \vspace{4cm}
         \begin{center}
             {
                 \zihao{-0}\heiti{}本科毕业论文(设计)
-                \vspace{1cm}
 
                 \fbox{\zihao{2}\heiti{}\@ThesisTitle}
-                \vspace{4cm}
+                \vspace{0.5cm}
 
                 \zihao{-3}\heiti{}院(系)名称~\underline{\makebox[50mm]{\@College}}
 
@@ -101,7 +115,7 @@
 
                 \zihao{-3}\heiti{}指~导~老~师~~\underline{\makebox[50mm]{\@Tutor}}
 
-                \vspace{2.5cm}
+                \vspace{4cm}
                 \zihao{-3}\heiti{}{\@Year}年{\@Month}月{\@Date}日
 
             }
