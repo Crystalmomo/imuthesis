@@ -1,0 +1,36 @@
+\chapter{自定义指令、环境}
+    本模板定义了“imuthesis”文档类型，使用本模板需要在让文档类型为imuthesis，并请同时引用hyperref以生成引文、目录。使用案例如下：
+    \begin{quote}
+        \lstinputlisting[
+            language=C++,
+            caption=模板使用方法,
+            label=code:document_class
+        ]{codes/document_class.tex}
+    \end{quote}
+
+    为了方便起见，本模板定义了一些常用的命令，方便大家使用。其中包括：
+    \begin{quote}
+        \begin{description}
+            \item [\tbs supercite{}指令] 用来自动插入上标引用。用法同\tbs cite{}完全一致。
+            \item [\tbs degree{}指令] 用来快速输入右上角上标角度符号。
+            \item [\tbs setThesisTitle{}指令] 设置论文标题
+            \item [\tbs setThesisTitleEng指令] 设置论文英文标题
+            \item [\tbs setStudentId{}指令] 设置学号
+            \item [\tbs setCLC{}指令] 设置密级
+            \item [\tbs setCollege{}指令] 设置学院名称
+            \item [\tbs setMajor{}指令] 设置专业名称
+            \item [\tbs setGrade{}指令] 设置年级
+            \item [\tbs setAuthor{}指令] 设置作者名称
+            \item [\tbs setAuthorEng{}指令] 设置作者英文名
+            \item [\tbs setTutor{}指令] 设置指导老师名称
+            \item [\tbs setTutorEng{}指令] 设置指导老师英文名
+            \item [\tbs setUniversityId{}指令] 设置学校代码
+            \item [\tbs setYear{}指令] 设置年
+            \item [\tbs setMonth{}指令] 设置月
+            \item [\tbs setDate{}指令] 设置日
+            \item [\tbs setKeywords{}指令] 设置论文关键词
+            \item [\tbs setKeywordsEng{}指令] 设置论文英文关键词
+            \item [cabstract环境] 用来输入中文摘要内容\footnote{摘要正文文本前一定不要空行！摘要写完后一定需要空行！英文摘要亦如此，示例请看chapters/abstract.tex}。
+            \item [eabstract环境] 用来输入英文摘要内容。
+        \end{description}
+    \end{quote}

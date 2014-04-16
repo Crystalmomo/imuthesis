@@ -288,7 +288,8 @@ FUNCTION {bbl.techrep}
 { "Tech. Rep." }
 
 FUNCTION {bbl.mthesis}
-{ "Master's thesis" }
+%{ "Master's thesis" }
+{ "" }
 
 FUNCTION {bbl.phdthesis}
 { "Ph.D. thesis" }

@@ -1,0 +1,143 @@
+\chapter{代码段、图片、表格、参考文献}
+    % \LaTeX默认图片、表格的排版格式为浮动排版，虽然能保证文本紧凑，但不利于排版样式。本模板在原有的默认样式基础之上新增非浮动模块，具体使用方式如下。
+
+    \section{代码段}
+        本模板使用lsting作为代码高亮支持工具。同时配合“\tbs makeremark”工具能够实现为代码添加额外注释。例如我们有如下\LaTeX代码：
+        \begin{quote}
+            \lstinputlisting[
+                caption=使用listing插入代码示例
+            ]{codes/lsting.tex}
+        \end{quote}
+
+        将这段代码插入在文档中的某个位置。例如，我们将helloworld.cpp文件输出在下面：
+        \lstinputlisting[
+            language=C++,
+            caption=Helloword,
+            label=code:helloworld
+        ]{codes/helloworld.cpp}
+        
+        当你的代码中有通过/*\#\tbs makeremark{注释内容}\#*/\footnote{相当于所有被包含在“/*\#”和“\#*/”转义字符串之间的代码都会被\LaTeX解释。使用这个转义字符串的好处是能够将包含其中的\LaTeX命令在C、C++、C\#等语言中被当做注释，让程序能够正常编译。如果需要插入其他语言的代码，请修改imuthesis.cls中第91行的代码}添加的额外注释时，使用\tbs showremarks命令就可以将额外注释的内容输出出来：
+        \begin{quote}
+            \showremarks
+        \end{quote}
+
+    \section{图片}
+        在\LaTeX中常见的插入图片的方式都会导致图片成为浮动图片，通过minipage的方式可以避免这种情况发生。例如有如下代码：
+        \lstinputlisting[
+            caption=通过minipage插入非浮动图片。
+        ]{codes/figure.tex}
+        
+        将该代码插入到文档中，可以实现如下效果\footnote{注：在\tbs\tbs[\tbs intextsep]前不能有空行}：
+        \\[\intextsep] 
+            \begin{minipage}{\textwidth} 
+                \centering
+                \includegraphics{figure/emblem.png}
+                \figcaption{内蒙古大学校徽}
+                \label{fig:emblem} 
+            \end{minipage}
+        \\[\intextsep] 
+
+    \section{表格}
+        表格与图片类似，也可以通过minipage的方式避免产生浮动表格。例如有如下代码：
+        \lstinputlisting[
+            caption=通过minipage插入非浮动表格
+        ]{codes/table.tex}
+
+        将该代码插入到文档中，可以实现如下效果\footnote{该表格摘录自内蒙古大学精英学生开发者联盟开源电子书——《成为ACM/ICPC的好基友！》：\url{http://gitcafe.com/IMUDGES/NewGuysInACM-ICPC}}：
+        \\[\intextsep]
+            \begin{minipage}{\textwidth}
+                \centering 
+                \begin{tabular}{|l|c|}
+                    \hline
+                        $T(n)$ & 别称 \\
+                    \hline
+                        $T(1)=O(1)$ & 常数复杂度\\
+                        $T(n)=O(\log_{2}n)$ & 对数复杂度\\
+                        $T(n)=O(n)$ & 线性复杂度\\
+                        $T(n)=O(n\log_{2}n)$ & $n\log_{2}n$复杂度\\
+                        $T(n)=O(n^2)$ & 平方阶复杂度\\
+                        $T(n)=O(n^3)$ & 立方阶复杂度\\
+                        $T(n)=O(n!)$ & 阶乘阶复杂度\\
+                        $T(n)=O(2^n)$ & 指数阶复杂度\\
+                        $T(n)=O(n^n)$ & 写出这种代码就去死吧复杂度\\
+                    \hline
+                \end{tabular}
+                \tabcaption{几种常见的复杂度}
+                \label{tab:complexity} 
+            \end{minipage}
+        \\[\intextsep] 
+
+    \section{一行多图表}
+        在很多情况下，我们所插入的图片或表格尺寸较小，需要在同一行并排插入多张图片或表格，可以通过在\tbs textwidth前加上权重比很容易地实现这个效果，例如有这样的代码：
+        \lstinputlisting[
+            caption=一行多图
+        ]{codes/multi_figure.tex}
+
+        将该代码插入到文档中，可以实现以下并排图片的效果：
+        \\[\intextsep] 
+            \begin{minipage}{0.5\textwidth} 
+                \centering
+                \includegraphics{figure/emblem.png}
+                \figcaption{内蒙古大学校徽}
+                \label{fig:emblem} 
+            \end{minipage}
+            \begin{minipage}{0.5\textwidth} 
+                \centering
+                \includegraphics{figure/imudges.png}
+                \figcaption{内蒙古大学精英学生开发者联盟}
+                \label{fig:emblem} 
+            \end{minipage}
+        \\[\intextsep] 
+
+        不仅可以并排显示两张图片，还可以图片和表格混排，例如有这样的代码：
+        \lstinputlisting[
+            caption=一行多图
+        ]{codes/figure_table_fix.tex}
+
+        将该代码插入到文档中，可以实现以下图表混排的效果：
+        \\[\intextsep] 
+            \begin{minipage}{0.5\textwidth} 
+                \centering
+                \includegraphics{figure/emblem.png}
+                \figcaption{内蒙古大学校徽}
+                \label{fig:emblem} 
+            \end{minipage}
+            \begin{minipage}{0.5\textwidth}
+                \centering 
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                        排行 & 编程语言 & 市场占有率 \\
+                    \hline
+                        1 & C & 17.631\%    \\
+                        2 & Java & 17.348\% \\
+                        3 & Objective-C & 12.875\% \\
+                        4 & C++ & 6.137\% \\
+                        5 & C\# & 4.820\% \\
+                        6 & (Visual) Basic & 3.441\% \\
+                        7 & PHP & 2.773\% \\
+                    \hline
+                \end{tabular}
+                \tabcaption{2014年4月 TIOBE 编程语言排行}
+                \label{tab:presidents}
+            \end{minipage}
+        \\[\intextsep] 
+
+    \section{参考文献}
+        本模板\emph{强烈}建议使用BibTex作为文献管理工具。
+        模板使用chinesebst作为BibTex文献格式，支持期刊文章、学位论文、专著等格式。
+        为了符合国家标准，我们在chinesebst中稍做修改，但不保证chinesebst能够完全符合要求\footnote{But it still works well}。
+
+        BibTex文件以“.bib”结尾，其文件格式和使用方式并未发生改变，所以在此恕不阐述。详细信息可以查看本文档的文献文件“paper.bib”。
+
+        注：此处可以使用本模板定义的命令：\tbs supercite{}来引证文献，可以达到右上角上标显示。例如有如下文段\footnote{摘录自作者本科毕业论文，仅供此文档示例使用，严禁转载！}：
+
+        \subsection{引用文献示例}
+            \subsubsection{文段1}
+                交互设计是定义、设计人造系统的行为的设计领域\supercite{book_interaction_design}。它结合了“数字媒体”、“人机交互”、“工业设计”、“用户心理学”等多个学科。随着计算机运算性能和增长，人们不再满足于以传统的键盘鼠标作为与计算机交流接口的交互方式。“语音控制”、“意念控制”、“手势控制”等诸多的交互方法已经逐渐走入我们的生活之中。
+
+            \subsubsection{文段2}
+                经过查阅相关文献，现在国内的交互设计领域更多的是针对交互内容的优化而鲜有交互方式的变化，例如陈高伟曾经讨论过在线交互设计的现状\supercite{article_current_situation_and_trend_of_design_of_online_interaction}，张学军等曾经讨论过交互设计在Flash中应用\supercite{article_flash_interaction_design}，卫兵曾研究过基于脑电波的人机交互系统\supercite{thesis_design_and_research_of_a_hci_control_system_based_on_eeg_alpha_reythm}，倪晨等曾讨论过Kinect在人机交互领域的应用\supercite{article_the_research_and_application_of_kinect_technology_in_the_field_of_human_computer_interaction}。
+
+
+
+        

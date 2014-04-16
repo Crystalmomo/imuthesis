@@ -17,24 +17,107 @@
 % 页边距和页面尺寸
 \geometry{top=30mm,bottom=25mm,left=30mm,right=20mm}
 
+% 去掉目录、引证等处的颜色
+\RequirePackage[colorlinks=false]{hyperref}
+
+% 代码支持
+\RequirePackage{listings}
+
+% 图像绘制支持
+\RequirePackage{tikz}
+
+% 代码高亮支持
+\RequirePackage{xcolor}
+
+% ifthen宏包
+\RequirePackage{ifthen}
+
+% 代码注释标记
+
+\newcounter{coderemarks}
+\setcounter{coderemarks}{1}
+\newcounter{codevar}
+\setcounter{codevar}{1}
+ 
+\newcommand{\circlemark}[1]{%
+    \tikz\node[
+        text=white,
+        font=\sffamily\bfseries,
+        inner sep=0mm,
+        draw,
+        circle,
+        fill=black
+    ]{#1};
+}
+
+\newcommand{\makeremark}[1]{%
+    \circlemark{
+        \arabic{coderemarks}
+    }%
+    \global \expandafter
+    \def \csname codebox\the\value{coderemarks}\endcsname{#1}%
+    \stepcounter{coderemarks}
+}
+
+\newcommand{\showremarks}{%
+    \begin{list}
+        {
+            \circlemark{
+                \arabic{codevar}
+            }
+        } %
+        {} %
+        \whiledo{\value{codevar} < \value{coderemarks}}{ %
+            \item \expandafter\csname codebox\the\value{codevar}\endcsname %
+            \stepcounter{codevar}
+        } %
+    \end{list} %
+    \setcounter{coderemarks}{1}%
+    \setcounter{codevar}{1}%
+}
+
+\definecolor{keywordcolor}{rgb}{0.8,0.1,0.5}
+\definecolor{webgreen}{rgb}{0,.5,0}
+
+\lstset{
+    language=C++,
+    basicstyle=\footnotesize \linespread{0.4} \selectfont, 
+    keywordstyle=\color{keywordcolor}\bfseries, 
+    identifierstyle=, 
+    commentstyle=\color{blue} \textit, 
+    stringstyle=\ttfamily, 
+    showstringspaces=false,
+    captionpos=t,
+    escapeinside={/*\#}{\#*/}
+}
+
+\renewcommand{\lstlistingname}{代码}
+% ----
+
 % 1.5倍行距
 \linespread{1.5}
+
+% 段间距
+\setlength{\parskip}{0.5\baselineskip}
 
 %重定义一些标题格式（ctex）
 
 %% 一级标题（Chapter）
 \CTEXsetup[titleformat={\zihao{3}\heiti}]{chapter}  %章标题3号黑体
 \CTEXsetup[nameformat={\zihao{3}\heiti}]{chapter}   %章名3号黑体
+% \CTEXsetup[afterskip=0em]{chapter}
 
 %% 二级标题（Section）
 \CTEXsetup[format={}]{section}      %取消缺省样式
 \CTEXsetup[titleformat={\zihao{-4}\heiti}]{section}  
 \CTEXsetup[nameformat={\zihao{-4}\heiti}]{section}
+% \CTEXsetup[afterskip=0em]{section}
 
 %% 三级标题（Subsection）
 \CTEXsetup[format={}]{subsection}    %取消缺省样式
 \CTEXsetup[titleformat={\zihao{-4}\heiti}]{subsection}
 \CTEXsetup[nameformat={\zihao{-4}\heiti}]{subsection}
+% \CTEXsetup[afterskip=0em]{subsection}
 
 
 % 页眉页脚
@@ -115,7 +198,7 @@
 
                 \zihao{-3}\heiti{}指~导~老~师~~\underline{\makebox[50mm]{\@Tutor}}
 
-                \vspace{4cm}
+                \vspace{1cm}
                 \zihao{-3}\heiti{}{\@Year}年{\@Month}月{\@Date}日
 
             }
@@ -155,9 +238,18 @@
     \zihao{4}\heiti{}\textbf{Keywords}~~\zihao{-4}\songti{}\@KeywordsEng
 }
 
+% 处理不浮动的页面
+\makeatletter 
+  \newcommand\figcaption{\def\@captype{figure}\caption} 
+  \newcommand\tabcaption{\def\@captype{table}\caption} 
+\makeatother
+
 % 一些实用的小工具~
 % 上标引用
 \newcommand{\supercite}[1]{\textsuperscript{\cite{#1}}}
+
+%快速输入度(°)
+\newcommand{\degree}{$^{\circ}$}
 
 
 

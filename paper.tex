@@ -1,26 +1,30 @@
 % 模板定义了imuthesis宏包，派生自ctexbook，依赖ctex
 \documentclass[hyperref]{imuthesis}
-
-\begin{document}
-
-	%个人信息注入
+%个人信息注入
 	\setThesisTitle{内蒙古大学~本科学位论文~\LaTeX模板}
 	\setThesisTitleEng{The IMU Dissertation  Template of {\LaTeX}}
 	\setStudentId{12345678}
-	\setCLC{TP39}
-	\setCollege{计算机学院}
+	\setCLC{TPXX.XX}
+	\setCollege{XXX学院}
 	\setMajor{计算机科学与技术}
-	\setGrade{2010级}
-	\setAuthor{石博天}
-	\setAuthorEng{Botian, Shi}
-	\setTutor{张学良}
-	\setTutorEng{Xueliang, Zhang}
+	\setGrade{20XX级}
+	\setAuthor{XXX}
+	\setAuthorEng{XXX}
+	\setTutor{XXX}
+	\setTutorEng{XXX}
 	\setUniversityId{10126}
 	\setYear{2014}
 	\setMonth{4}
-	\setDate{11}
+	\setDate{16}
 	\setKeywords{{\LaTeX},论文,模板,内蒙古大学}
 	\setKeywordsEng{{\LaTeX}, Dissertation, Template, IMU}
+	
+	% textbackslash太长了，改成tbs短点儿
+	\newcommand\tbs\textbackslash
+
+\begin{document}
+
+	
 	
 	\maketitle
 	
@@ -44,6 +48,10 @@
 	
 	% 致谢
 	\include{chapters/thanks}
+
+	%参考文献
+	\bibliographystyle{chinesebst}	%使用chinesebst
+	\bibliography{paper.bib}
 	
 \end{document}
 
